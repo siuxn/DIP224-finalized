@@ -32,9 +32,9 @@ date_default_timezone_set('Asia/Kuala_Lumpur');
 
 // Function to calculate carbon footprint based on selections
 function calculateCarbonFootprint($people, $home_size, $food, $water, $household, $waste, $recycle, $recycling_categories, $personal_miles, $public_miles, $flight_distance) {
+
     // Initialize carbon footprint
     $carbon_footprint = 0;
-    //$recycle = isset($_POST["recycle"]) ? $_POST["recycle"] : "";
 
     // Calculation based on selections
     switch ($people) {
@@ -111,9 +111,9 @@ function calculateCarbonFootprint($people, $home_size, $food, $water, $household
             $carbon_footprint += 3;
             break;
         case 4:
-            break; // No points added if no dishwasher
+            break;                                                      // No points added if no dishwasher
         case 5:
-            $carbon_footprint += 6; // Perform calculation twice if both dishwasher and washing machine
+            $carbon_footprint += 6;                                     // Perform calculation twice if both dishwasher and washing machine
             break;
     }
 
@@ -211,19 +211,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Calculate carbon footprint
     $carbon_footprint = calculateCarbonFootprint($people, $home_size, $food, $water, $household, $waste, $recycle, $recycling_categories, $personal_miles, $public_miles, $flight_distance);
-    $living_situation_carbon_footprint = $carbon_footprint; // Assign to the living_situation_carbon_footprint variable
+    $living_situation_carbon_footprint = $carbon_footprint; 
+    // Assign to the living_situation_carbon_footprint variable
 
 
     //Add up points for transportation
     $transportation_score = 0;
 
-    //Add your transportation score calculation here
+    //Add your transportation score calculation
     $personal_miles = isset($_POST['personal_miles']) ? (int) $_POST['personal_miles'] : 0;
     $public_miles = isset($_POST['public_miles']) ? (int) $_POST['public_miles'] : 0;
     $flight_distance = isset($_POST['flight_distance']) ? $_POST['flight_distance'] : '';
     
-    // Add points based on the provided instructions
+    // Add points
     // Personal Vehicle Usage
+    
     switch ($personal_miles) {
         case '15000+':
             $transportation_score += 12;
@@ -257,7 +259,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             break;
         }
 
-    // Flights
     if ($flight_distance == 'short') {
         $transportation_score += 2;
     } elseif ($flight_distance == 'medium') {
@@ -641,7 +642,6 @@ function toggleRecyclingOptions() {
         var isValid = true;
 
     // Validate each field and display error messages
-    // Validate each field and display error messages
     if (people === "Please Select One") {
         errorMessages.innerHTML += "Please select the number of people in the household<br>";
         isValid = false;
@@ -671,7 +671,6 @@ function toggleRecyclingOptions() {
         errorMessages.innerHTML += "Please select how much garbage you produce each week<br>";
         isValid = false;
     }
-
 
     if (flight_distance === "Please Select One") {
         errorMessages.innerHTML += "Please select the furthest distance you travel by plane in a year<br>";
